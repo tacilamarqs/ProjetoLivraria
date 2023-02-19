@@ -5,7 +5,7 @@ using ProjetoLivrariaAPI.Repository;
 
 namespace ProjetoLivrariaAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class LivroController : ControllerBase
     {

@@ -17,6 +17,12 @@ namespace ProjetoLivrariaAPI.Repository
             return await context.Livro.Include(nameof(Genero)).Include(nameof(Editora)).Include(nameof(Autor)).ToListAsync();
         }
 
-       
+        public async Task<Livro> GetLivro(Guid livroId)
+        {
+            return await context.Livro
+                .Include(nameof(Genero)).Include(nameof(Editora)).Include(nameof(Autor))
+                .FirstOrDefaultAsync(x => x.Id == livroId);
+        }
+
     }
 }

@@ -27,5 +27,18 @@ namespace ProjetoLivrariaAPI.Controllers
             return Ok(mapper.Map<List<Livro>>(livros));
             
         }
+
+        [HttpGet("{livroId:guid}")]
+        public async Task<IActionResult> GetLivroId([FromRoute] Guid livroId)
+        {
+            var livro = await livroRepository.GetLivro(livroId);
+
+            if(livro == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(mapper.Map<Livro>(livro));
+        }
     }
 }

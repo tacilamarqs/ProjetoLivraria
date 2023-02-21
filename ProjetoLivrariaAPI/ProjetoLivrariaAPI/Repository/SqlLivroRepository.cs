@@ -24,5 +24,19 @@ namespace ProjetoLivrariaAPI.Repository
                 .FirstOrDefaultAsync(x => x.Id == livroId);
         }
 
+        public async Task<List<Genero>> GetGeneros()
+        {
+            return await context.Genero.ToListAsync();
+        }
+
+        public async Task<List<Autor>> GetAutores()
+        {
+            return await context.Autor.ToListAsync();
+        }
+
+        public async Task<List<Editora>> GetEditoras()
+        {
+            return await context.Editora.ToListAsync();
+        }
     }
 }

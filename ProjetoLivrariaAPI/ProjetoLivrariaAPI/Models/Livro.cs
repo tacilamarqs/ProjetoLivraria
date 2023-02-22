@@ -17,7 +17,7 @@ namespace ProjetoLivrariaAPI.Models
         [Range(1, 10000, ErrorMessage = "O livro deve ter entre 1 e 10.000 páginas!")]
         public int NumeroDePaginas { get; set; }
         [Required(ErrorMessage = "A data de publicação é obrigatória!")]
-        public DateTime DataDePublicacao { get; set; }
+        public DateTime? DataDePublicacao { get; set; }
         
         
         [Range(1, 20, ErrorMessage = "O livro só pode ter até 20 edições!")]

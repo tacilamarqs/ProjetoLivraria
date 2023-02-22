@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using ProjetoLivrariaAPI.DomainModels;
 using ProjetoLivrariaAPI.Models;
 using ProjetoLivrariaAPI.Repository;
+using Livro = ProjetoLivrariaAPI.DomainModels.Livro;
 
 namespace ProjetoLivrariaAPI.Controllers
 {
@@ -29,7 +31,7 @@ namespace ProjetoLivrariaAPI.Controllers
         }
 
         [HttpGet("{livroId:guid}")]
-        public async Task<IActionResult> GetLivroId([FromRoute] Guid livroId)
+        public async Task<IActionResult> BuscaLivroId([FromRoute] Guid livroId)
         {
             var livro = await livroRepository.GetLivro(livroId);
 
@@ -40,5 +42,43 @@ namespace ProjetoLivrariaAPI.Controllers
 
             return Ok(mapper.Map<Livro>(livro));
         }
+
+        [HttpPut("{livroId:guid}")]
+        public async Task<IActionResult> AtualizarLivro([FromRoute] Guid livroId, [FromBody] AtualizarLivroRequisicao requisicao)
+        {
+            if(await livroRepository.LivroExiste(livroId))
+            {
+                var livroAtualizado = await livroRepository.AtualizacaoLivro(livroId, mapper.Map<Models.Livro>(requisicao));
+            
+                if(livroAtualizado != null)
+                {
+                    return Ok(mapper.Map<Livro>(livroAtualizado));
+                }
+            }
+            return NotFound();
+            
+        }
+
+        [HttpDelete("{livroId:guid}")]
+        public async Task<IActionResult> ExcluirLivro([FromRoute] Guid livroId)
+        {
+           if(await livroRepository.LivroExiste(livroId))
+            {
+                var livroDeletado = await livroRepository.ExcluirLivro(livroId);
+                return Ok(mapper.Map<Livro>(livroDeletado));
+            }
+            return NotFound();
+        }
+
+        [HttpPost("{criar}")]
+        public async Task<IActionResult> CriarLivro([FromBody] CriaLivroRequisicao requisicao)
+        {
+            var livro = await livroRepository.CriaLivro(mapper.Map<Models.Livro>(requisicao));
+
+            return CreatedAtAction(nameof(BuscaLivroId),
+                new {livroId = livro.Id},
+                mapper.Map<Livro>(livro));
+        }
+
     }
 }

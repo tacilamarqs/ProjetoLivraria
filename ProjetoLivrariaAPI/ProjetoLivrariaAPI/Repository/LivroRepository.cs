@@ -10,11 +10,7 @@ namespace ProjetoLivrariaAPI.Repository
 
         Task<Models.Livro> GetLivro(Guid livroId);
 
-        Task<List<Models.Genero>>GetGeneros();
-
         Task<List<Models.Autor>> GetAutores();
-
-        Task<List<Models.Editora>> GetEditoras();
 
         Task<bool> LivroExiste(Guid livroId);
 
@@ -22,6 +18,6 @@ namespace ProjetoLivrariaAPI.Repository
 
         Task<Models.Livro> CriaLivro(Models.Livro requisicao);
 
-        Task<Models.Livro> ExcluirLivro(Guid studentId);
+        Task<Models.Livro> DeletarLivro(Guid studentId);
     }
 }

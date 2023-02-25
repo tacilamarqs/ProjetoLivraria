@@ -13,17 +13,6 @@ namespace ProjetoLivrariaAPI.Profiles.Maps
                 AutorNome = source.AutorNome,
 
             };
-
-            destination.Editora = new Models.Editora()
-            {
-                EditoraNome = source.EditoraNome,
-            };
-
-            destination.Genero = new Models.Genero()
-            {
-                GeneroNome = source.GeneroNome,
-                Descricao = source.Descricao,
-            };
         }
     }
 }

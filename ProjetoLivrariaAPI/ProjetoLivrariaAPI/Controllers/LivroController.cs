@@ -7,8 +7,7 @@ using Livro = ProjetoLivrariaAPI.DomainModels.Livro;
 
 namespace ProjetoLivrariaAPI.Controllers
 {
-    [Route("[controller]")]
-    [ApiController]
+    
     public class LivroController : ControllerBase
     {
         // private static List<Livro> livros = new List<Livro>();
@@ -22,6 +21,8 @@ namespace ProjetoLivrariaAPI.Controllers
         }
 
         [HttpGet]
+        [Route("[controller]")]
+
         public async Task<IActionResult> BuscaTodosLivros()
         {
             var livros = await livroRepository.GetLivros();
@@ -30,7 +31,8 @@ namespace ProjetoLivrariaAPI.Controllers
             
         }
 
-        [HttpGet("{livroId:guid}")]
+        [HttpGet]
+        [Route("[controller]/{livroId:guid}")]
         public async Task<IActionResult> BuscaLivroId([FromRoute] Guid livroId)
         {
             var livro = await livroRepository.GetLivro(livroId);
@@ -43,11 +45,13 @@ namespace ProjetoLivrariaAPI.Controllers
             return Ok(mapper.Map<Livro>(livro));
         }
 
-        [HttpPut("{livroId:guid}")]
+        [HttpPut]
+        [Route("editar/{livroId:guid}")]
         public async Task<IActionResult> AtualizarLivro([FromRoute] Guid livroId, [FromBody] AtualizarLivroRequisicao requisicao)
         {
             if(await livroRepository.LivroExiste(livroId))
             {
+                Console.WriteLine(livroId);
                 var livroAtualizado = await livroRepository.AtualizacaoLivro(livroId, mapper.Map<Models.Livro>(requisicao));
             
                 if(livroAtualizado != null)
@@ -59,25 +63,35 @@ namespace ProjetoLivrariaAPI.Controllers
             
         }
 
-        [HttpDelete("{livroId:guid}")]
+        [HttpDelete]
+        [Route("deletar/{livroId:guid}")]
+
         public async Task<IActionResult> ExcluirLivro([FromRoute] Guid livroId)
         {
            if(await livroRepository.LivroExiste(livroId))
             {
-                var livroDeletado = await livroRepository.ExcluirLivro(livroId);
+                var livroDeletado = await livroRepository.DeletarLivro(livroId);
                 return Ok(mapper.Map<Livro>(livroDeletado));
             }
             return NotFound();
         }
 
-        [HttpPost("{criar}")]
+        [HttpPost]
+        [Route("criar")]
+
         public async Task<IActionResult> CriarLivro([FromBody] CriaLivroRequisicao requisicao)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var livro = await livroRepository.CriaLivro(mapper.Map<Models.Livro>(requisicao));
 
             return CreatedAtAction(nameof(BuscaLivroId),
                 new {livroId = livro.Id},
                 mapper.Map<Livro>(livro));
+
         }
 
     }

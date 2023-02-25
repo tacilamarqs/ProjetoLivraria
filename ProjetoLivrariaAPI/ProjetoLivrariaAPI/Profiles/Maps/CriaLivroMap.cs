@@ -14,17 +14,6 @@ namespace ProjetoLivrariaAPI.Profiles.Maps
                 AutorId = Guid.NewGuid(),
                 AutorNome = source.AutorNome
             };
-            destination.Editora = new Models.Editora()
-            {
-                EditoraId = Guid.NewGuid(),
-                EditoraNome = source.EditoraNome
-            };
-            destination.Genero = new Models.Genero()
-            {
-                GeneroId = Guid.NewGuid(),
-                GeneroNome = source.GeneroNome,
-                Descricao = source.Descricao
-            };
         }
     }
 }

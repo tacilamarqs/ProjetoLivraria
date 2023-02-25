@@ -18,23 +18,18 @@ namespace ProjetoLivrariaAPI.Models
         public int NumeroDePaginas { get; set; }
         [Required(ErrorMessage = "A data de publicação é obrigatória!")]
         public DateTime? DataDePublicacao { get; set; }
-        
-        
+        public string Editora { get; set; }
+        public string Genero { get; set; }
+
         [Range(1, 20, ErrorMessage = "O livro só pode ter até 20 edições!")]
         public int Edicao { get; set; }
         public string Colecao { get; set; }
-        public string UrlFotoCapa { get; set; }
+        public string? UrlFotoCapa { get; set; }
+
         [Required(ErrorMessage = "O valor é obrigatório!")]
         public double Valor { get; set; }
 
-        public Guid GeneroId { get; set; }
-        public Guid AutorId { get; set; }
-        public Guid EditoraId { get; set; }
-
-       
         public Autor Autor { get; set; }
-        public Editora Editora { get; set; }
-        
-        public Genero Genero { get; set; }
+        public Guid? AutorId { get; set; }
     }
 }

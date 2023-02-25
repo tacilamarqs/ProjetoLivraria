@@ -6,6 +6,6 @@ namespace ProjetoLivrariaAPI.DomainModels
     {
         public Guid GeneroId { get; set; }
         public string GeneroNome { get; set; }
-        public string Descricao { get; set; }
+        public string? Descricao { get; set; }
     }
 }

@@ -24,7 +24,6 @@ namespace ProjetoLivrariaAPI.Models
         [Range(1, 20, ErrorMessage = "O livro só pode ter até 20 edições!")]
         public int Edicao { get; set; }
         public string Colecao { get; set; }
-        public string? UrlFotoCapa { get; set; }
 
         [Required(ErrorMessage = "O valor é obrigatório!")]
         public double Valor { get; set; }

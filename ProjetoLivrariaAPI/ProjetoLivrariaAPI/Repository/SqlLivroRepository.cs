@@ -54,7 +54,6 @@ namespace ProjetoLivrariaAPI.Repository
                 livrosExistentes.Genero = requisicao.Genero;
                 livrosExistentes.Edicao = requisicao.Edicao;
                 livrosExistentes.Colecao = requisicao.Colecao;
-                livrosExistentes.UrlFotoCapa = requisicao.UrlFotoCapa;
                 livrosExistentes.Valor = requisicao.Valor;
                 livrosExistentes.Autor.AutorNome = requisicao.Autor.AutorNome;
 
@@ -86,5 +85,7 @@ namespace ProjetoLivrariaAPI.Repository
             return novoLivro.Entity;
         
         }
+
+ 
     }
 }

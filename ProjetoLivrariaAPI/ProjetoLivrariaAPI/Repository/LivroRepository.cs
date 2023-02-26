@@ -19,5 +19,6 @@ namespace ProjetoLivrariaAPI.Repository
         Task<Models.Livro> CriaLivro(Models.Livro requisicao);
 
         Task<Models.Livro> DeletarLivro(Guid studentId);
+
     }
 }

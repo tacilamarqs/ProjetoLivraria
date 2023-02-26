@@ -12,7 +12,6 @@
         public string Genero { get; set; }
         public int Edicao { get; set; }
         public string Colecao { get; set; }
-        public string? UrlFotoCapa { get; set; }
         public double Valor { get; set; }
         public Guid? AutorId { get; set; }
         public string? AutorNome { get; set; }

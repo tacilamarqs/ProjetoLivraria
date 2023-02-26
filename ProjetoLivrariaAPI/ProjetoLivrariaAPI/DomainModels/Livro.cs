@@ -17,7 +17,6 @@ namespace ProjetoLivrariaAPI.DomainModels
         public string Genero { get; set; }
         public int Edicao { get; set; }
         public string Colecao { get; set; }
-        public string? UrlFotoCapa { get; set; }
         public double Valor { get; set; }
 
         public Autor Autor { get; set; }

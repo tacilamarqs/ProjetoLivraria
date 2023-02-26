@@ -84,6 +84,7 @@ namespace ProjetoLivrariaAPI.Repository
             var novoLivro = await context.Livro.AddAsync(requisicao);
             await context.SaveChangesAsync();
             return novoLivro.Entity;
+        
         }
     }
 }

@@ -51,7 +51,7 @@ namespace ProjetoLivrariaAPI.Controllers
         {
             if(await livroRepository.LivroExiste(livroId))
             {
-                Console.WriteLine(livroId);
+                
                 var livroAtualizado = await livroRepository.AtualizacaoLivro(livroId, mapper.Map<Models.Livro>(requisicao));
             
                 if(livroAtualizado != null)
@@ -86,6 +86,7 @@ namespace ProjetoLivrariaAPI.Controllers
                 return BadRequest(ModelState);
             }
 
+            requisicao.AutorId = Guid.NewGuid();
             var livro = await livroRepository.CriaLivro(mapper.Map<Models.Livro>(requisicao));
 
             return CreatedAtAction(nameof(BuscaLivroId),

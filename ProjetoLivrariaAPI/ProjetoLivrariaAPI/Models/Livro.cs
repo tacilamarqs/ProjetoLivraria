@@ -29,7 +29,7 @@ namespace ProjetoLivrariaAPI.Models
         [Required(ErrorMessage = "O valor é obrigatório!")]
         public double Valor { get; set; }
 
-        public Autor Autor { get; set; }
+        public Autor? Autor { get; set; }
         public Guid? AutorId { get; set; }
     }
 }
